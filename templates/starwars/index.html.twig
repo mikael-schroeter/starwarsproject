@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Starwars Project{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>All Starwars planets!</h1>
+    
+    List:
+    <ul>
+        {% for planet in content['results'] %}
+            <li><a href="http://localhost:8080/starwars/planet/{{ page * 10 + loop.index -10 }}">{{ planet.name }}</a></li>
+        {% endfor %}
+        {% if content['previous']  %}
+            <a href="http://localhost:8080/starwars/planets/{{ page - 1 }}"><button type="button" class="btn btn-primary">Previous</button></a>
+        {% endif %}
+        {% if content['next']  %}
+            <a href="http://localhost:8080/starwars/planets/{{ page + 1 }}"><button type="button" class="btn btn-primary">Next</button></a>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}
